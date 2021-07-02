@@ -1,0 +1,9 @@
+/*@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';*/
+
+@import 'admin-lte/plugins/fontawesome-free/css/all.css';
+@import 'admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.css';
+@import 'admin-lte/plugins/select2/css/select2.min.css';
+@import 'admin-lte/plugins/summernote/summernote-bs4.css';
+@import 'admin-lte/dist/css/adminlte.css';
