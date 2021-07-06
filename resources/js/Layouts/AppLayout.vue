@@ -163,10 +163,22 @@
                             </inertia-link>
                         </li>
 
+                        <li class="nav-item" v-if="can('Categories - View')">
+                            <inertia-link :href="route('categories.index')" class="nav-link">
+                                <i class="nav-icon fas fa-tags"></i>
+                                <p>{{ __('Categories') }}</p>
+                            </inertia-link>
+                        </li>
 
+                        <li class="nav-item">
+                            <inertia-link :href="route('posts.index')" class="nav-link">
+                                <i class="nav-icon fas fa-tags"></i>
+                                <p>{{ __('Posts') }}</p>
+                            </inertia-link>
+                        </li>
                         <li v-if="can('Security')" class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-shield-alt"></i>
                                 <p>
                                     {{ __('Security') }}
                                     <i class="right fas fa-angle-left"></i>
@@ -185,19 +197,6 @@
                                     </inertia-link>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item" v-if="can('Categories - View')">
-                            <inertia-link :href="route('categories.index')" class="nav-link">
-                                <i class="nav-icon fas fa-tags"></i>
-                                <p>{{ __('Categories') }}</p>
-                            </inertia-link>
-                        </li>
-
-                        <li class="nav-item">
-                            <inertia-link :href="route('posts.index')" class="nav-link">
-                                <i class="nav-icon fas fa-tags"></i>
-                                <p>{{ __('Posts') }}</p>
-                            </inertia-link>
                         </li>
 
                         <li class="nav-item">

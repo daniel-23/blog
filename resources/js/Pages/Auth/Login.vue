@@ -7,7 +7,7 @@
 
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">{{ __('Log in') }}</p>
                 <jet-validation-errors />
 
                 <div v-if="status" class="alert alert-success">
@@ -16,7 +16,7 @@
                 
                 <form @submit.prevent="submit">
                     <div class="input-group mb-3">                        
-                        <jet-input id="email" type="email" v-model="form.email" required autofocus placeholder="Email" />
+                        <jet-input id="email" type="email" v-model="form.email" required autofocus :placeholder="__('Email')" />
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <jet-input id="password" type="password" v-model="form.password" required autocomplete="current-password" placeholder="Password" />
+                        <jet-input id="password" type="password" v-model="form.password" required autocomplete="current-password" :placeholder="__('Password')" />
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -32,24 +32,24 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-7">
                             <div class="icheck-primary">
                                 <jet-checkbox id="remember" name="remember" v-model:checked="form.remember" />
-                                <label for="remember">
-                                    Remember me
+                                <label for="remember" class="text-sm">
+                                    {{ __('Remember me') }}
                                 </label>
                             </div>
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col-5">
                             <jet-button class="btn-primary btn-block" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Log in
+                                {{ __('Log in') }}
                             </jet-button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-                <div class="social-auth-links text-center mb-3">
+                <!--div class="social-auth-links text-center mb-3">
                     <p>- OR -</p>
                     <a href="#" class="btn btn-block btn-primary">
                         <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -57,16 +57,16 @@
                     <a href="#" class="btn btn-block btn-danger">
                         <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
                     </a>
-                </div>
+                </div-->
                 <!-- /.social-auth-links -->
                 <p class="mb-1">
                     <inertia-link v-if="canResetPassword" :href="route('password.request')">
-                        Forgot your password?
+                        {{ __('Forgot your password?') }}
                     </inertia-link>
                 </p>
                 <p class="mb-0">
                     <inertia-link :href="route('register')" class="text-center">
-                        Register
+                        {{ __('Register') }}
                     </inertia-link>
                 </p>
             </div>

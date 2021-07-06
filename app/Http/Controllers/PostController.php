@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Category, Post};
-use Illuminate\Http\Request;
 use App\Http\Requests\PostStoreRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
+
 class PostController extends Controller
 {
     /**
@@ -16,7 +18,12 @@ class PostController extends Controller
     public function index()
     {
         return Inertia::render('Posts/Index', [
-            'posts' => auth()->user()->posts()->paginate(1),
+            'posts' => auth()->user()->posts()->paginate(2)->through(fn ($post) => [
+                'id' => $post->id,
+                'title' => $post->title,
+                'content' => Str::limit(strip_tags($post->content),100).'...',
+                'created_at' => $post->created_at->diffForHumans(),
+            ]),
         ]);
     }
 

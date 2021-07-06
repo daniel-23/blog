@@ -31,9 +31,7 @@ Route::get('language/{language}', function ($language) {
 })->name('language');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('categories', CategoryController::class);
     Route::resource('permissions', PermissionController::class);

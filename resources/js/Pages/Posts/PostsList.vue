@@ -4,25 +4,18 @@
             <div class="card-header">
                 <h3 class="card-title">{{ __('My posts') }}</h3>
                 <div class="card-tools">
-                    <ul class="pagination pagination-sm float-right">
-                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
+                    <inertia-link :href="route('posts.create')" class="btn btn-success btn-sm">{{ __('Create') }}</inertia-link>
                 </div>
             </div>
-            <!-- /.card-header -->
+
             <div class="card-body p-0">
-                <pre>{{ posts }}</pre>
                 <table class="table">
                     <thead>
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>{{ __('Title') }}</th>
                             <th>{{ __('Content') }}</th>
-                            <th style="width: 40px">Label</th>
+                            <th style="width: 40px">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,14 +28,20 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card-footer clearfix">
+                <pagination class="pagination-sm float-right" :links="posts.links" />
+            </div>
         </div>
     </div>
 
 </template>
 <script>
-export default {
-    
-    props: ['posts'],
+    import Pagination from '@/Shared/Pagination'
+    export default {
+        components: {
+            Pagination,
+        },
+        props: ['posts'],
 }
 
 </script>
