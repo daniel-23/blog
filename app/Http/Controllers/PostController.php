@@ -49,7 +49,7 @@ class PostController extends Controller
     {
         $post = auth()->user()->posts()->create($request->validated());
         $post->categories()->sync($request->categories);
-        $request->session()->flash('flash', 'Post created successful!');
+        $request->session()->flash('flash', 'Post created successfully!');
         return redirect()->route('posts.index');
     }
 
@@ -61,7 +61,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post->load('categories');
+        return Inertia::render('Posts/Show', [
+            'post' => $post,
+            'canEdit' => $post->user_id == auth()->id(),
+        ]);
     }
 
     /**
@@ -72,7 +76,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $post->load('categories');
+        return Inertia::render('Posts/Edit', [
+            'categories' => Category::select(['id', 'name'])->where('active', 1)->orderBy('name')->get(),
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -82,9 +90,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostStoreRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        $post->categories()->sync($request->categories);
+        $request->session()->flash('flash', 'Post modified successfully!');
+        return redirect()->route('posts.index');
     }
 
     /**

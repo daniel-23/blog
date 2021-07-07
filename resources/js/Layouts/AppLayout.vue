@@ -120,10 +120,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right p-0">
                         <inertia-link :href="route('language', 'en')" class="dropdown-item" :class="{'active': $page.props.locale == 'en'}">
-                            <i class="flag-icon flag-icon-us mr-2"></i> English
+                            <i class="flag-icon flag-icon-us mr-2"></i> {{ __('English') }}
                         </inertia-link>
                         <inertia-link :href="route('language', 'es')" class="dropdown-item" :class="{'active': $page.props.locale == 'es'}">
-                            <i class="flag-icon flag-icon-es mr-2"></i> Spanish
+                            <i class="flag-icon flag-icon-es mr-2"></i> {{ __('Spanish') }}
                         </inertia-link>
                     </div>
                 </li>
@@ -172,7 +172,7 @@
 
                         <li class="nav-item">
                             <inertia-link :href="route('posts.index')" class="nav-link">
-                                <i class="nav-icon fas fa-tags"></i>
+                                <i class="nav-icon far fa-clipboard"></i>
                                 <p>{{ __('Posts') }}</p>
                             </inertia-link>
                         </li>
@@ -227,7 +227,7 @@
             <slot name="header"></slot>
             <!-- /.content-header -->
             <div class="alert alert-success m-3" v-if="$page.props.jetstream.flash.length">
-                {{ $page.props.jetstream.flash }}
+                {{ __($page.props.jetstream.flash) }}
             </div>
             <!-- Main content -->
             <slot></slot>
