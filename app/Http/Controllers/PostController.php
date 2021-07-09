@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         return Inertia::render('Posts/Index', [
-            'posts' => auth()->user()->posts()->paginate(2)->through(fn ($post) => [
+            'posts' => auth()->user()->posts()->paginate(10)->through(fn ($post) => [
                 'id' => $post->id,
                 'title' => $post->title,
                 'content' => Str::limit(strip_tags($post->content),100).'...',
@@ -107,5 +107,13 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function uploadFiles(Request $request)
+    {
+        
+        $path = $request->file('img')->store('posts','public');
+
+        return response()->json(['url' => url("/storage/$path")]);
     }
 }

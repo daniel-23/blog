@@ -36,5 +36,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('posts', PostController::class);
+    Route::post('posts/upload-files',[App\Http\Controllers\PostController::class, 'uploadFiles'])->name('post.uploadFiles');
     Route::resource('roles', RoleController::class);
 });

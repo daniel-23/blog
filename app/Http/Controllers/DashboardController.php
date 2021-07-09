@@ -17,7 +17,7 @@ class DashboardController extends Controller
                 ->orWhere('user_id',auth()->id())
                 ->orderBy('id', 'DESC')
                 ->filter(\Illuminate\Support\Facades\Request::only('search'))
-                ->paginate(2)
+                ->paginate(4)
                 ->withQueryString()
                 ->through(fn ($post) => [
                     'id' => $post->id,

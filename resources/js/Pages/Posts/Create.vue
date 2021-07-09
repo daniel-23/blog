@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Content') }}</label>
 
-                                    <textarea class="textarea" :class="{ 'is-invalid' : form.errors.content}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" v-model="form.content"></textarea>
+                                    <textarea class="textarea" id="text-content" :class="{ 'is-invalid' : form.errors.content}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" v-model="form.content"></textarea>
                                     <jet-input-error :message="form.errors.content" />
                                 </div>
 
@@ -129,7 +129,31 @@
 
         mounted(){
             $('.select2').select2();
-            $('.textarea').summernote();
+            $('#text-content').summernote({
+                callbacks: {
+                    onImageUpload: function(image) {                        
+                        var img = image[0];
+                        
+                        console.log("img", img);
+                        var datos = new FormData();
+                        datos.append("img", img);
+                        console.log("datos", datos);
+                        
+                        axios.post(route('post.uploadFiles'),datos,{
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        }).then(resp => {
+                            console.log("resp", resp.data);
+                            let nodeImg = document.createElement('img');
+                            nodeImg.src= resp.data.url;
+                            $('#text-content').summernote("insertNode", nodeImg);
+                        });
+                        
+                    }
+                }
+            });
+                    
         }
     }
 </script>

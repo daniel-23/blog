@@ -178,7 +178,7 @@
                         </li>
                         <li v-if="can('Security')" class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-shield-alt"></i>
+                                <i class="nav-icon fas fa-shield-alt text-success"></i>
                                 <p>
                                     {{ __('Security') }}
                                     <i class="right fas fa-angle-left"></i>
@@ -197,16 +197,6 @@
                                     </inertia-link>
                                 </li>
                             </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Simple Link
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
                         </li>
 
                         <li class="nav-item">
