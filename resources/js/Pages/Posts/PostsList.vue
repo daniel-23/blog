@@ -8,8 +8,8 @@
                 </div>
             </div>
 
-            <div class="card-body p-0">
-                <table class="table">
+            <div class="card-body" :class="{'p-0': posts.data.length > 0}">
+                <table class="table" v-show="posts.data.length > 0">
                     <thead>
                         <tr>
                             <th style="width: 10px">#</th>
@@ -27,8 +27,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <p class="text-center" v-show="posts.data.length == 0">{{ __('You have no posts to show.') }}</p>
             </div>
-            <div class="card-footer clearfix">
+            <div class="card-footer clearfix" v-if="posts.links.length > 3">
                 <pagination class="pagination-sm float-right" :links="posts.links" />
             </div>
         </div>
